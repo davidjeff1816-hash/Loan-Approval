@@ -135,3 +135,37 @@ if st.button("🔍 Predict Loan Status"):
 # ===============================
 st.markdown("---")
 st.caption("© Smart Loan Approval System | Machine Learning Project")
+import google.generativeai as genai
+
+# Configure Gemini
+genai.configure(api_key="AIzaSyDl-112d9iUo_uelF7JIaW_nH3WL4IPFbo")
+
+model = genai.GenerativeModel("gemini-pro")
+
+st.markdown("---")
+st.subheader("🤖 Jarvis – Banking Assistant")
+
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
+
+user_input = st.text_input("Ask Jarvis about loans, eligibility, documents...")
+
+if st.button("Send"):
+    if user_input:
+        response = model.generate_content(
+            f"You are Jarvis, a professional banking assistant. Answer clearly:\n{user_input}"
+        )
+
+        st.session_state.chat_history.append(
+            ("You", user_input)
+        )
+        st.session_state.chat_history.append(
+            ("Jarvis", response.text)
+        )
+
+# Display chat
+for sender, msg in st.session_state.chat_history:
+    if sender == "You":
+        st.markdown(f"**🧑 {sender}:** {msg}")
+    else:
+        st.markdown(f"**🤖 {sender}:** {msg}")
