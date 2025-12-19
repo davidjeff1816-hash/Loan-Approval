@@ -140,7 +140,7 @@ import google.generativeai as genai
 # Configure Gemini
 genai.configure(api_key="AIzaSyDl-112d9iUo_uelF7JIaW_nH3WL4IPFbo")
 
-model = genai.GenerativeModel("gemini-pro")
+model = genai.GenerativeModel("Jarvis-Banking Assistant")
 
 st.markdown("---")
 st.subheader("🤖 Jarvis – Banking Assistant")
